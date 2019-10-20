@@ -9,12 +9,16 @@ resource "aws_instance" "vm" {
     }
 }
 
-data "cloudflare_zone" "default" {
-    zone        = "hooks.technology"
+data "cloudflare_zones" "default" {
+    filter {
+        name    = var.cloudflare_zone
+        status  = "active"
+        paused  = false
+    }
 }
 
 resource "cloudflare_record" "a_record" {
-    zone_id     = data.cloudflare_zone.default.id
+    zone_id     = lookup(data.cloudflare_zones.default.zones[0], "name")
     name        = var.name
     value       = aws_instance.vm.public_ip
     type        = "A"
