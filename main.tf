@@ -9,7 +9,7 @@ resource "aws_instance" "vm" {
     }
 }
 
-data "cloudflare_zones" "default" {
+data "cloudflare_zone" "default" {
     zone        = "hooks.technology"
 }
 
