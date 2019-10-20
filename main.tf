@@ -10,7 +10,7 @@ resource "aws_instance" "vm" {
 }
 
 data "cloudflare_zone" "default" {
-    zone        = "hooks.technology"
+    zone        = var.cloudflare_zone
 }
 
 resource "cloudflare_record" "a_record" {
