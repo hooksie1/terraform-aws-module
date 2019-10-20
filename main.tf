@@ -10,7 +10,7 @@ resource "aws_instance" "vm" {
 }
 
 resource "cloudflare_record" "a_record" {
-    zone_id     = var.cloudflare_zone
+    zone        = var.cloudflare_zone
     name        = var.name
     value       = aws_instance.vm.public_ip
     type        = "A"
