@@ -1,5 +1,4 @@
 resource "aws_instance" "vm" {
-    count           = var.number
     ami             = var.image
     instance_type   = var.size
     key_name        = var.key
