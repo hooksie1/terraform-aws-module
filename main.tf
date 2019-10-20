@@ -18,7 +18,7 @@ data "cloudflare_zones" "default" {
 }
 
 resource "cloudflare_record" "a_record" {
-    zone_id     = lookup(data.cloudflare_zones.default.zones[0].id, "name")
+    zone_id     = lookup(data.cloudflare_zones.default.zones[0], "name")
     name        = var.name
     value       = aws_instance.vm.public_ip
     type        = "A"
