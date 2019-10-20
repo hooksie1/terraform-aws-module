@@ -9,8 +9,12 @@ resource "aws_instance" "vm" {
     }
 }
 
-data "cloudflare_zone" "default" {
-    zone        = var.cloudflare_zone
+data "cloudflare_zones" "default" {
+    filter{
+        name        = var.cloudflare_zone
+        status      = "active"
+        paused      = "false"
+    }
 }
 
 resource "cloudflare_record" "a_record" {
