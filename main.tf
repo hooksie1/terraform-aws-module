@@ -9,8 +9,12 @@ resource "aws_instance" "vm" {
     }
 }
 
+data "cloudflare_zone" "default" {
+    zone        = "hooks.technology"
+}
+
 resource "cloudflare_record" "a_record" {
-    zone        = var.cloudflare_zone
+    zone_id     = cloudflare_zone.default.id
     name        = var.name
     value       = aws_instance.vm.public_ip
     type        = "A"
