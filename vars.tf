@@ -2,4 +2,4 @@ variable name   {}
 variable size   {}
 variable image  {}
 variable key    {}
-variable cloudflare_record {}
+variable cloudflare_zone {}
